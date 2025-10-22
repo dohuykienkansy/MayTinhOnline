@@ -199,3 +199,254 @@
     .frac .den{display:block;padding:0 6px}
     .repeat{font-weight:700;color:var(--muted)}
     .secondary-line{font-size:13px;color:var(--muted)}
+
+    /* =========================
+   Responsive: điện thoại
+   ========================= */
+@media (max-width: 480px) {
+  :root{
+    --radius:12px;
+  }
+
+  body{
+    padding:10px;
+    background: linear-gradient(180deg,var(--bg), #f0f8ff);
+  }
+
+  .app{
+    max-width:100%;
+    margin:0 auto;
+    grid-template-columns: 1fr;
+    gap:12px;
+    align-items:start;
+    padding:8px;
+  }
+
+  header{
+    gap:8px;
+    align-items:center;
+    padding:6px 0;
+  }
+  header h1{
+    font-size:18px;
+    margin:0;
+  }
+  header p{
+    display:none; /* ẩn dòng mô tả để tiết kiệm không gian */
+  }
+
+  .panel{
+    padding:10px;
+    border-radius:12px;
+  }
+
+  /* top input */
+  .top-input{ padding:10px; }
+  .display-row{ flex-direction:column; gap:8px; align-items:stretch; }
+  #exprInput{
+    font-size:18px;
+    padding:12px 12px;
+  }
+  .controls{ justify-content:flex-end; flex-wrap:wrap; gap:6px; }
+
+  /* result */
+  .display-result{ padding:10px; font-size:15px; }
+  .result-number{ font-size:16px; }
+  .result-alt{ font-size:12px; }
+
+  /* lower area -> sắp xếp theo cột */
+  .lower{ flex-direction:column; gap:10px; }
+  .left-lower{ order:1; }
+
+  /* tabs */
+  .tabs{ gap:6px; flex-wrap:wrap; }
+  .tab{ padding:7px 10px; font-size:13px; }
+
+  /* Các grid (phím chức năng) - giảm số cột để vừa màn hình */
+  .grid{
+    grid-template-columns: repeat(4, 1fr);
+    gap:6px;
+    padding:8px;
+  }
+  .grid .key{ padding:10px 6px; font-size:14px; }
+
+  /* ABC keyboard: cho phép wrap, giảm cột */
+  #tab-abc{ grid-template-columns: repeat(6, 1fr) !important; }
+
+  /* Numpad chiếm toàn bộ chiều ngang, tăng kích cỡ phím */
+  .numpad{
+    grid-template-columns: repeat(4, 1fr);
+    gap:8px;
+    padding:10px;
+  }
+  .numpad .key{
+    padding:16px 8px;
+    font-size:18px;
+    border-radius:10px;
+  }
+
+  /* right controls -> đặt thành hàng dưới numpad */
+  .right-controls{
+    width:100%;
+    display:flex;
+    gap:8px;
+    justify-content:space-between;
+  }
+  .right-grid{ grid-template-columns: repeat(4, 1fr); gap:8px; width:100%; }
+
+  /* History / recent: thu gọn */
+  .recent .title{ font-size:15px; }
+  .recent .expr{ font-size:13px; max-height:40px; overflow:hidden; text-overflow:ellipsis; }
+  .recent .res{ font-size:16px; }
+
+  .history{ padding:8px; }
+  .history-head strong{ font-size:14px; }
+  .clear-history-btn{ padding:6px 8px; font-size:13px; }
+
+  /* confirm box responsive */
+  .confirm-box{ flex-direction:column; gap:8px; align-items:flex-start; }
+  .confirm-actions{ width:100%; display:flex; justify-content:flex-end; gap:8px; }
+
+  /* footer */
+  .footer{ font-size:12px; }
+
+  /* helpers */
+  .chip{ display:none; } /* ẩn chip nhỏ trên điện thoại */
+
+  /* fraction display */
+  .frac{ font-size:14px; }
+
+  /* make interactive elements easier to tap */
+  .key, .btn, .small { min-height:44px; -webkit-tap-highlight-color: transparent; }
+
+  /* ensure toast is visible and not off-screen */
+  .history-toast{ font-size:13px; padding:8px 10px; }
+
+  /* fine tune for very narrow screens */
+  @media (max-width:360px){
+    #tab-abc{ grid-template-columns: repeat(5, 1fr) !important; }
+    .numpad .key{ padding:14px 6px; font-size:16px; }
+    .display-row{ gap:6px; }
+    .controls .btn{ padding:8px 10px; font-size:13px; }
+  }
+}
+
+
+/* =========================
+   Responsive: iPad / Tablet
+   (481px — 1024px)
+   ========================= */
+
+/* Chung cho tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  :root{
+    --radius:13px;
+  }
+
+  body{
+    padding:14px;
+  }
+
+  .app{
+    max-width:980px;
+    margin:0 auto;
+    gap:14px;
+    align-items:start;
+    padding:10px;
+  }
+
+  header h1{ font-size:20px; }
+  header p{ font-size:13px; color:var(--muted); display:block; }
+
+  .panel{ padding:12px; border-radius:13px; }
+
+  /* Top input area */
+  .display-row{ gap:10px; align-items:center; }
+  #exprInput{ font-size:18px; padding:12px 14px; }
+
+  .controls .btn{ padding:9px 12px; font-size:14px; }
+
+  .display-result{ padding:12px; }
+  .result-number{ font-size:18px; }
+
+  /* Lower layout: mặc định 2 cột trên tablet lớn, 1 cột trên tablet nhỏ */
+  .lower{ gap:12px; }
+  .left-lower{ order:1; }
+
+  /* Tabs */
+  .tabs{ gap:8px; }
+  .tab{ padding:8px 12px; font-size:14px; }
+
+  /* Phím/keyboard adjustments */
+  .grid{ gap:8px; padding:10px; }
+  .grid .key{ padding:12px 8px; font-size:15px; border-radius:10px; }
+
+  /* ABC keyboard: dễ thao tác, 8 columns nếu đủ chỗ */
+  #tab-abc{ grid-template-columns: repeat(8, 1fr) !important; }
+
+  /* Numpad */
+  .numpad{
+    grid-template-columns: repeat(4, 1fr);
+    gap:10px;
+    padding:12px;
+  }
+  .numpad .key{
+    padding:16px 10px;
+    font-size:18px;
+    border-radius:12px;
+  }
+
+  /* Right controls: giữ dạng cột nhỏ */ 
+  .right-controls{
+    width:280px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .right-grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
+
+  /* Recent & history */
+  .recent .expr{ font-size:13px; }
+  .recent .res{ font-size:17px; }
+  .history{ padding:10px; }
+
+  .history-head strong{ font-size:15px; }
+  .clear-history-btn{ font-size:14px; padding:8px 10px; }
+
+  /* confirm box */
+  .confirm-box{ padding:12px; }
+
+  .footer{ font-size:13px; }
+
+  /* Tăng khả năng chạm trên tablet */
+  .key, .btn, .small { min-height:48px; }
+
+  /* Tinh chỉnh fraction/secondary */
+  .frac{ font-size:15px; }
+  .secondary-line{ font-size:13px; }
+
+  /* Nếu muốn ẩn bớt thành phần không cần thiết khi màn hình hơi nhỏ */
+  @media (max-width: 640px) {
+    /* chuyển sang một cột nếu thiết bị tablet nhỏ (ví dụ iPad mini portrait) */
+    .app{ grid-template-columns: 1fr; }
+    .right{ order:2; width:100%; }
+    .right-controls{ width:100%; flex-direction:row; flex-wrap:wrap; }
+    .right-grid{ grid-template-columns:repeat(4,1fr); gap:8px; }
+  }
+}
+
+/* Đặc biệt cho iPad landscape (>=768px & <=1024px): giữ 2 cột, làm to phím + spacing */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .app{
+    grid-template-columns: 1fr 360px;
+    gap:16px;
+  }
+
+  #exprInput{ font-size:20px; padding:14px; }
+
+  .numpad .key{ padding:18px 12px; font-size:20px; }
+
+  .right-controls{ width:360px; gap:12px; }
+
+  .grid .key{ font-size:16px; padding:14px 10px; }
+}
