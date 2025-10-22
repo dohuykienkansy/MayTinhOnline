@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/png" href="logo.png">
+<title>Máy tính online — KANSY</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>Máy tính online</h1>
+        <p>Chào mừng bạn đến với máy tính Online KANSY</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn secondary" id="darkToggle" title="Chuyển giao diện">Dark</button>
+        <small style="color:var(--muted)">Phiên bản: 3.5</small>
+      </div>
+    </header>
+
+    <!-- LEFT -->
+    <section class="panel left">
+      <div class="top-input">
+        <div class="display-row">
+          <input id="exprInput" placeholder="Nhập phép tính tại đây" autocomplete="off" />
+          <div class="controls">
+            <button class="btn" id="undoBtn" title="Hoàn tác (Undo)">↶</button>
+            <button class="btn" id="redoBtn" title="Làm lại (Redo)">↷</button>
+            <button class="btn secondary" id="radToggle" title="Radian / Độ">Rad</button>
+            <button class="btn secondary" id="clearAll" title="Xóa tất cả">Xóa tất cả</button>
+          </div>
+        </div>
+        <div id="resultBox" class="display-result">
+          <div class="result-main">
+            <div>
+              <div class="result-number" id="resultText">—</div>
+              <div class="result-alt" id="resultAlt">—</div>
+            </div>
+            <div style="text-align:right">
+              <div class="secondary-line">ANS = <span id="ansShow">—</span></div>
+              <div style="margin-top:8px"><small class="secondary-line">Chế độ: <span id="modeShow">Radian</span></small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- lower -->
+      <div class="lower">
+        <div class="left-lower">
+          <div class="tabs">
+            <div class="tab active" data-tab="chinh">Chính</div>
+            <div class="tab" data-tab="abc">abc</div>
+            <div class="tab" data-tab="nangcao">Nâng cao</div>
+          </div>
+
+          <!-- CHÍNH -->
+          <div class="grid" id="tab-chinh" style="display:grid; padding:12px !important;">
+            <div class="key func" data-insert="**2">a²</div>
+            <div class="key func" data-insert="**">a^b</div>
+            <div class="key func" data-insert="abs(">|a|</div>
+            <div class="key func" data-insert="pi">π</div>
+
+            <div class="key func" data-insert="sqrt(">√</div>
+            <div class="key func" data-insert="root(">n√</div>
+            <div class="key func" data-insert="(">(</div>
+            <div class="key func" data-insert=")">)</div>
+
+            <div class="key func" data-insert="sin(">sin</div>
+            <div class="key func" data-insert="cos(">cos</div>
+            <div class="key func" data-insert="tan(">tan</div>
+            <div class="key func" data-insert=",">,</div>
+
+            <div class="key func" data-insert="ANS">ANS</div>
+            <div class="key func" data-insert="%">%</div>
+            <div class="key func" id="enterBtn">Enter</div>
+            <div class="key func" data-insert="!">!</div>
+          </div>
+
+          <!-- ABC -->
+          <div class="grid" id="tab-abc" style="display:none;grid-template-columns:repeat(10,1fr);">
+            <!-- row1 -->
+            <div class="key" data-insert="q">q</div><div class="key" data-insert="w">w</div><div class="key" data-insert="e">e</div><div class="key" data-insert="r">r</div><div class="key" data-insert="t">t</div><div class="key" data-insert="y">y</div><div class="key" data-insert="u">u</div><div class="key" data-insert="i">i</div><div class="key" data-insert="o">o</div><div class="key" data-insert="p">p</div>
+            <!-- row2 -->
+            <div class="key" data-insert="a">a</div><div class="key" data-insert="s">s</div><div class="key" data-insert="d">d</div><div class="key" data-insert="f">f</div><div class="key" data-insert="g">g</div><div class="key" data-insert="h">h</div><div class="key" data-insert="j">j</div><div class="key" data-insert="k">k</div><div class="key" data-insert="l">l</div><div class="key" id="abcBack">Xóa</div>
+            <!-- row3 -->
+            <div class="key" id="capsLock">Caps</div><div class="key" data-insert="z">z</div><div class="key" data-insert="x">x</div><div class="key" data-insert="c">c</div><div class="key" data-insert="v">v</div><div class="key" data-insert="b">b</div><div class="key" data-insert="n">n</div><div class="key" data-insert="m">m</div><div class="key" data-insert="|">|</div><div class="key" id="abcEnter">Enter</div>
+          </div>
+
+          <!-- Nâng cao -->
+          <div class="grid" id="tab-nangcao" style="display:none">
+            <div class="key func" data-insert="sin(">sin</div>
+            <div class="key func" data-insert="cos(">cos</div>
+            <div class="key func" data-insert="tan(">tan</div>
+            <div class="key func" data-insert="asin(">sin⁻¹</div>
+
+            <div class="key func" data-insert="acos(">cos⁻¹</div>
+            <div class="key func" data-insert="atan(">tan⁻¹</div>
+            <div class="key func" data-insert="mean(">mean(,)</div>
+            <div class="key func" data-insert="stdev(">stdev(,)</div>
+
+            <div class="key func" data-insert="nPr(">nPr(,)</div>
+            <div class="key func" data-insert="nCr(">nCr(,)</div>
+            <div class="key func" data-insert="!">!</div>
+            <div class="key func" data-insert="exp(">eˣ</div>
+
+            <div class="key func" data-insert="**">a^b</div>
+            <div class="key func" data-insert="abs(">abs</div>
+            <div class="key func" data-insert="round(">round</div>
+            <div class="key func" data-insert="log(">log10</div>
+
+            <div class="key func" data-insert="ln(">ln</div>
+            <div class="key func" data-insert="pi">π</div>
+            <div class="key func" data-insert="e">e</div>
+            <div class="key func" id="nangEnter">Enter</div>
+          </div>
+        </div>
+
+        <!-- Middle numpad -->
+        <div style="width:380px">
+          <div class="numpad panel">
+            <div class="key" data-insert="7">7</div>
+            <div class="key" data-insert="8">8</div>
+            <div class="key" data-insert="9">9</div>
+            <div class="key op" data-insert="/">÷</div>
+
+            <div class="key" data-insert="4">4</div>
+            <div class="key" data-insert="5">5</div>
+            <div class="key" data-insert="6">6</div>
+            <div class="key op" data-insert="*">×</div>
+
+            <div class="key" data-insert="1">1</div>
+            <div class="key" data-insert="2">2</div>
+            <div class="key" data-insert="3">3</div>
+            <div class="key op" data-insert="-">−</div>
+
+            <div class="key" data-insert="0">0</div>
+            <div class="key" data-insert=".">.</div>
+            <div class="key" data-insert="ANS">ANS</div>
+            <div class="key op" data-insert="+">+</div>
+
+            <div class="key op" data-insert="%">%</div>
+            <div class="key op" data-insert=",">,</div>
+            <div class="key op" data-insert="(">(</div>
+            <div class="key op" data-insert=")">)</div>
+          </div>
+        </div>
+
+        <!-- Right controls -->
+        <div class="right-controls">
+          <div class="right-grid">
+            <div class="small" id="moveLeft">←</div>
+            <div class="small" id="moveRight">→</div>
+            <div class="small" id="fracAB">a/b</div>
+            <div class="small" id="backspace">Xóa</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" id="copyBtn">Sao chép</button>
+            <button class="btn secondary" id="pasteBtn">Dán</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT -->
+    <aside class="panel right">
+      <div class="recent">
+        <div class="title">Phép tính gần nhất</div>
+        <div class="expr" id="recentExpr">—</div>
+        <div class="res" id="recentRes">—</div>
+      </div>
+
+      <div class="history">
+  <div class="history-head" style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+    <strong>Lịch sử (tối đa 8)</strong>
+    <button class="btn clear-history-btn" title="Xóa toàn bộ lịch sử">Xóa tất cả</button>
+  </div>
+
+  <ul id="historyList"></ul>
+
+  <!-- Inline confirmation box (ẩn ban đầu). Hiện lên khi người dùng nhấn "Xóa tất cả" -->
+  <div class="confirm-box" id="confirmBox" aria-hidden="true" style="display:none;">
+    <div class="confirm-inner">
+      <div class="confirm-text">
+        <strong>Xác nhận xóa</strong>
+        <div style="margin-top:6px;color:var(--muted)">Bạn chắc chắn muốn xóa toàn bộ lịch sử? Hành động này không thể hoàn tác.</div>
+      </div>
+      <div class="confirm-actions">
+        <button class="btn" id="confirmCancel">Hủy</button>
+        <button class="btn warn" id="confirmOk">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- small transient toast thông báo -->
+  <div id="historyToast" class="history-toast" style="display:none;">Đã xóa lịch sử</div>
+</div>
+
+
+
+      <div class="footer">
+        Cảm ơn bạn đã tin tưởng và sử dụng phần mềm máy tính online của chúng tôi!
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
