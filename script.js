@@ -497,18 +497,61 @@ document.getElementById('capsLock').addEventListener('click', ()=>{
     }
   });
 });
+const tabABC = document.getElementById('tab-abc');
+const numpadWrapper = document.querySelector('.numpad-wrapper');
+
+
 
 /* Tabs */
-document.querySelectorAll('.tab').forEach(tab=>{
-  tab.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+// document.querySelectorAll('.tab').forEach(tab=>{
+//   tab.addEventListener('click', ()=>{
+//     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+//     tab.classList.add('active');
+//     const id = tab.getAttribute('data-tab');
+//     document.getElementById('tab-chinh').style.display = id==='chinh' ? 'grid' : 'none';
+//     document.getElementById('tab-abc').style.display = id==='abc' ? 'grid' : 'none';
+//     document.getElementById('tab-nangcao').style.display = id==='nangcao' ? 'grid' : 'none';
+//   });
+// });
+document.addEventListener('DOMContentLoaded', ()=>{
+  const tabs = document.querySelectorAll('.tab');
+  const tabChinh = document.getElementById('tab-chinh');
+  const tabAbc = document.getElementById('tab-abc');
+  const tabNang = document.getElementById('tab-nangcao');
+
+  // ensure elements exist
+  if(!tabs.length) return;
+
+  function setActiveTab(tab){
+    // toggle active class on tabs
+    tabs.forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
+
     const id = tab.getAttribute('data-tab');
-    document.getElementById('tab-chinh').style.display = id==='chinh' ? 'grid' : 'none';
-    document.getElementById('tab-abc').style.display = id==='abc' ? 'grid' : 'none';
-    document.getElementById('tab-nangcao').style.display = id==='nangcao' ? 'grid' : 'none';
+
+    // show/hide tab panels
+    if(tabChinh) tabChinh.style.display = id === 'chinh' ? 'grid' : 'none';
+    if(tabAbc)   tabAbc.style.display   = id === 'abc'   ? 'grid' : 'none';
+    if(tabNang)  tabNang.style.display  = id === 'nangcao'? 'grid' : 'none';
+
+    // ADD/REMOVE body class so CSS can shrink the numpad
+    if(id === 'abc'){
+      document.body.classList.add('show-abc');
+    } else {
+      document.body.classList.remove('show-abc');
+    }
+  }
+
+  // attach click listeners
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=> setActiveTab(tab));
   });
+
+  // optional: set the initial active tab based on existing .active or default first tab
+  const initial = document.querySelector('.tab.active') || tabs[0];
+  if(initial) setActiveTab(initial);
 });
+
 
 /* keyboard input handling */
 exprInput.addEventListener('keydown', (e)=>{
