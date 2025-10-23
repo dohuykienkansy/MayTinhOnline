@@ -603,3 +603,46 @@ document.addEventListener('keydown', (e)=>{
     history = []; renderHistory(); saveHistoryToLocalStorage(); alert('Đã xóa lịch sử');
   }
 });
+
+// --- Ngăn bàn phím điện thoại tự bật ---
+const displayInput = document.querySelector('input'); // ô hiển thị của máy tính
+
+// Khi trang tải xong
+if (displayInput) {
+  // Không cho tự động hiện bàn phím
+  displayInput.setAttribute('readonly', true);
+
+  // Khi người dùng muốn bật bàn phím thật (qua nút 📱)
+  let keyboardEnabled = false;
+
+  const mobileKBBtn = document.getElementById('mobileKBBtn');
+
+  if (mobileKBBtn) {
+    mobileKBBtn.addEventListener('click', () => {
+      keyboardEnabled = !keyboardEnabled;
+
+      if (keyboardEnabled) {
+        displayInput.removeAttribute('readonly'); // cho phép nhập
+        displayInput.focus(); // bật bàn phím
+        mobileKBBtn.title = 'Ẩn bàn phím điện thoại';
+        mobileKBBtn.setAttribute('aria-label', 'Ẩn bàn phím điện thoại');
+        mobileKBBtn.textContent = '⌨️'; // đổi icon cho dễ nhận biết
+      } else {
+        displayInput.setAttribute('readonly', true); // tắt nhập
+        displayInput.blur(); // ẩn bàn phím
+        mobileKBBtn.title = 'Hiển thị bàn phím điện thoại';
+        mobileKBBtn.setAttribute('aria-label', 'Hiển thị bàn phím điện thoại');
+        mobileKBBtn.textContent = '📱';
+      }
+    });
+  }
+
+  // Chặn focus tự động (vd: khi ấn phím trên giao diện)
+  displayInput.addEventListener('focus', (e) => {
+    if (!keyboardEnabled) {
+      e.preventDefault();
+      displayInput.blur(); // không cho focus nếu chưa bật bằng nút 📱
+    }
+  });
+}
+

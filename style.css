@@ -115,9 +115,8 @@
     .show-abc .numpad-wrapper{
       width: 283px; 
     }
-    @media (max-width:360px){
-      .numpad-wrapper{ width: calc(100%); } 
-    }
+    
+    
     .numpad .key{padding:14px 8px;border-radius:10px;text-align:center;background:linear-gradient(180deg,#fff,#eef9ff);border:1px solid #dff0ff;cursor:pointer;font-weight:800;transition:transform .08s}
     .numpad .key:active{transform:translateY(2px)}
     .numpad .key.op{background:linear-gradient(180deg,#e9f6ff,#dff3ff);color:#07345a}
@@ -295,6 +294,8 @@
     font-size:18px;
     border-radius:10px;
   }
+  .numpad-wrapper{ width: calc(100%); } 
+  .show-abc .numpad-wrapper{ width: calc(100%); } 
 
   /* right controls -> đặt thành hàng dưới numpad */
   .right-controls{
@@ -339,6 +340,8 @@
     .numpad .key{ padding:14px 6px; font-size:16px; }
     .display-row{ gap:6px; }
     .controls .btn{ padding:8px 10px; font-size:13px; }
+    .numpad-wrapper{ width: calc(100%); } 
+    .show-abc .numpad-wrapper{ width: calc(100%); } 
   }
 }
 
@@ -406,7 +409,8 @@
     font-size:18px;
     border-radius:12px;
   }
-
+  .numpad-wrapper{ width: calc(100%); } 
+  .show-abc .numpad-wrapper{ width: calc(100%); } 
   /* Right controls: giữ dạng cột nhỏ */ 
   .right-controls{
     width:280px;
@@ -460,4 +464,34 @@
   .right-controls{ width:360px; gap:12px; }
 
   .grid .key{ font-size:16px; padding:14px 10px; }
+}
+/* nút nhỏ góc phải dưới - chỉ hiển thị trên màn hình nhỏ */
+.mobile-kb-btn{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:9999;
+  height:44px;
+  min-width:44px;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.08);
+  background:linear-gradient(180deg,#fff,#eef9ff);
+  box-shadow:0 6px 18px rgba(16,40,80,0.08);
+  font-size:18px;
+  cursor:pointer;
+  display:none; /* mặc định ẩn, chỉ hiện trên mobile */
+}
+
+/* Hiện trên mobile / small screens */
+@media (max-width:980px){
+  .mobile-kb-btn{ display:flex; align-items:center; justify-content:center; }
+}
+
+/* nếu dark mode */
+body.dark .mobile-kb-btn{
+  background:linear-gradient(180deg,#071826,#082a3a);
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
 }
