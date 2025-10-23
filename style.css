@@ -117,7 +117,6 @@
     }
     @media (max-width:360px){
       .numpad-wrapper{ width: calc(100%); } 
-      .show-abc .numpad-wrapper{ width: calc(66.666%); } 
     }
     .numpad .key{padding:14px 8px;border-radius:10px;text-align:center;background:linear-gradient(180deg,#fff,#eef9ff);border:1px solid #dff0ff;cursor:pointer;font-weight:800;transition:transform .08s}
     .numpad .key:active{transform:translateY(2px)}
