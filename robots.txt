@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://maytinhonlinekansy.vercel.app/sitemap.xml
