@@ -9,6 +9,12 @@
   <title>Máy tính online — Máy tính bỏ túi & máy tính hình học | Kansy</title>
   <meta name="description" content="Máy tính online miễn phí: máy tính bỏ túi, máy tính hình học, chuyển đổi đơn vị — tất cả trong một trang web duy nhất.">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
 </head>
 <body>
   <!-- nút bật keyboard trên mobile -->
